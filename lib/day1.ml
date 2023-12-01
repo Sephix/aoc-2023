@@ -40,7 +40,7 @@ let rec line_to_number = function
     string_to_number s ^ line_to_number next
 ;;
 
-let sanatized_lines = List.map lines ~f:line_to_number
+let sanatize_lines lines = List.map lines ~f:line_to_number
 
 let line_digit line =
   let list_char = String.to_list line in
@@ -65,4 +65,7 @@ let rec sum_values (values : string list) =
 ;;
 
 let result1 = input_digit lines |> get_line_value |> sum_values |> Int.to_string
-let result2 = input_digit sanatized_lines |> get_line_value |> sum_values |> Int.to_string
+
+let result2 =
+  input_digit lines |> sanatize_lines |> get_line_value |> sum_values |> Int.to_string
+;;
